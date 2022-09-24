@@ -1,0 +1,15 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+body{
+    background-color: beige;
+}
+
+.derechos{
+    width: 100%;
+    background-color: black;
+    color: rgb(219, 233, 233);
+    position: absolute;
+    bottom: 0%;
+}
