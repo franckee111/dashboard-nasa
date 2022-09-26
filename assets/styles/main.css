@@ -11,13 +11,14 @@ h1{
 }
 
 .derechos{
-    padding-top: 20px;
+    padding-top: 15px;
     width: 100%;
+    height: 60px;
     background-color: black;
     color: rgb(219, 233, 233);
-    position: absolute;
-    bottom: 0%;
+    
 }
+
 .derechos p{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
