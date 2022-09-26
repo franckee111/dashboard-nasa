@@ -1,42 +1,34 @@
-console.log("Entró al main JS");
-
 const base_api = "https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=";
 const key_api = "DV6KDKvpInnMAW075R5HSZtSbaa1uwme7T115NRR";
 const url_api = `${base_api}${key_api}`;
 const tblNasa = document.getElementById('tblNasa');
 const posicion = 0;
 
+function cargarDatos(){
 fetch(url_api, { method: "GET" })
     .then((response) => response.json())
     .then((data) => {
         tblNasa.innerHTML = "";
-        // console.log(data);
-        // console.log(data.near_earth_objects[0].id);
-        // console.log(data.near_earth_objects[0].name);
-        // console.log(`${data.near_earth_objects[0].estimated_diameter.kilometers.estimated_diameter_min.toFixed(2)} mín - ${data.near_earth_objects[0].estimated_diameter.kilometers.estimated_diameter_max.toFixed(2)} max`);
-        // console.log(data.near_earth_objects[0].is_potentially_hazardous_asteroid);
-        // console.log(parseFloat(data.near_earth_objects[0].close_approach_data[0].relative_velocity.kilometers_per_second).toFixed(2) );
-
-        // console.log((new Date(Date.parse(data.near_earth_objects[0].orbital_data.first_observation_date))).toLocaleDateString());
-        // console.log(data.near_earth_objects[0].orbital_data.first_observation_date);
-        // console.log(data.near_earth_objects[0].orbital_data.first_observation_date.substr(0,4));
-        // console.log(data.near_earth_objects[0].orbital_data.first_observation_date.substr(5,2));
-        // console.log(data.near_earth_objects[0].orbital_data.first_observation_date.substr(8,2));
-        // console.log(data.near_earth_objects[0].close_approach_data[0].orbiting_body);
-
-        for (let i = 0; i < data.near_earth_objects.length; i++) {
-            console.log(data.near_earth_objects[i].id);
-            console.log(data.near_earth_objects[i].name);
-            console.log(`${data.near_earth_objects[i].estimated_diameter.kilometers.estimated_diameter_min.toFixed(2)} mín - ${data.near_earth_objects[i].estimated_diameter.kilometers.estimated_diameter_max.toFixed(2)} max`);
-            console.log(data.near_earth_objects[i].is_potentially_hazardous_asteroid);
-            console.log(parseFloat(data.near_earth_objects[i].close_approach_data[posicion].relative_velocity.kilometers_per_second).toFixed(2));
-            console.log((new Date(Date.parse(data.near_earth_objects[i].orbital_data.first_observation_date))).toLocaleDateString());
-            console.log(data.near_earth_objects[i].close_approach_data[posicion].orbiting_body);
+        for(const asteroide of data.near_earth_objects){
+            let tr = `<tr>
+                <td> ${asteroide.id} </td>
+                <td> ${asteroide.name} </td>
+                <td> ${asteroide.estimated_diameter.kilometers.estimated_diameter_min.toFixed(2)} min - ${asteroide.estimated_diameter.kilometers.estimated_diameter_max.toFixed(2)} max </td>
+                <td> ${asteroide.is_potentially_hazardous_asteroid}  </td>
+                <td> ${parseFloat(asteroide.close_approach_data[posicion].relative_velocity.kilometers_per_second).toFixed(2)}  </td>
+                <td> ${(new Date(Date.parse(asteroide.orbital_data.first_observation_date))).toLocaleDateString()}  </td>
+                <td> ${asteroide.close_approach_data[posicion].orbiting_body}  </td>
+            </tr>`;
+            tblNasa.innerHTML += tr;
         }
-
-        
+        if(data.length == 0){
+            tblNasa.innerHTML = `<tr><td colspan="5" class="text-center">No hay datos</td></tr>`;
+        }        
     })
     .catch((error) => console.log(error));
+}
+
+cargarDatos();
 
 // const ctx = document.getElementById('myChart').getContext('2d');
 // const myChart = new Chart(ctx, {
