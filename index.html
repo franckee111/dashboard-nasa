@@ -1,29 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Api NASA</title>
     <link rel="shortcut icon" href="/assets/images/icons8-nasa-48.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/styles/main.css">
 </head>
+
 <body>
     <div class="container">
         <div class="row">
-            
+
             <div class="row">
                 <div class="col-md-10">
                     <div class="jumbotron jumbotron-fluid p-3 mb-2 bg-transparent text-white-50">
-                        <div class="container" >
-                          <h1 class="display-4">NASA</h1>
-                          <h2> Record de Asteroides</h2>
-                          <p class="lead">Te presentamos los mas interesantes Asteroides captados por los telescopios de la nasa con todas sus caracteristicas, descubre los que estuvieron mas cerca de la tierra y los mas lejanos asi como si fueron en algun momento un peligro para la tierra 🌍</p>
+                        <div class="container">
+                            <h1 class="display-4">NASA</h1>
+                            <h2> Record de Asteroides</h2>
+                            <p class="lead">Te presentamos los mas interesantes Asteroides captados por los telescopios
+                                de la nasa con todas sus caracteristicas, descubre los que estuvieron mas cerca de la
+                                tierra y los mas lejanos asi como si fueron en algun momento un peligro para la tierra
+                                🌍</p>
                         </div>
                     </div>
-              </div>
-            
+                </div>
+
                 <div class="col-md-2">
                     <img src="https://purepng.com/public/uploads/large/astronauts-2ue.png" height="150px" alt="">
                 </div>
@@ -32,47 +38,53 @@
                 <h1 class="text-center">Grafica</h1>
                 <canvas id="graph_velocity" width="50" height="30"></canvas>
             </div>
+            <div class="col-md-6">
+                <h1 class="text-center">Grafica</h1>
+                <canvas id="graph_orbiting" width="50" height="30"></canvas>
+            </div>
             <div class="col-md-12 ">
                 <h1 class="text-center">Tabla</h1>
                 <div class="table-responsive">
                     <table class="table text-white table-bordered table-hover">
                         <thead>
                             <tr>
-                              <th>Id</th>
-                              <th>Nombre Asteroide</th>
-                              <th>Diámetro Estimado (km)</th>
-                              <th>Peligroso</th>
-                              <th>Velocidad Relativa (km/s)</th>
-                              <th>1era. Observación</th>
-                              <th>Cuerpo Orbitante</th>
+                                <th>Id</th>
+                                <th>Nombre Asteroide</th>
+                                <th>Diámetro Estimado (km)</th>
+                                <th>Peligroso</th>
+                                <th>Velocidad Relativa (km/s)</th>
+                                <th>1era. Observación</th>
+                                <th>Cuerpo Orbitante</th>
                             </tr>
-                          </thead>
-                          <tbody id="tblNasa">
+                        </thead>
+                        <tbody id="tblNasa">
 
-                          </tbody>
+                        </tbody>
                     </table>
-                  </div>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="background">
         <div class="bg"></div>
-    
-    <div class="star-field">
-    <div class="layer"></div>
-    <div class="layer"></div>
-    <div class="layer"></div>
-       
-    </div>
 
-    <footer>
-        <div class="derechos">
-            <p class="text-center">&copy 2022. Todos los derechos reservados. Hecho con &#x1F499  por alumnos de Ucamp.</p>
+        <div class="star-field">
+            <div class="layer"></div>
+            <div class="layer"></div>
+            <div class="layer"></div>
+
         </div>
-    </footer>
-    
+
+        <footer>
+            <div class="derechos">
+                <p class="text-center">&copy 2022. Todos los derechos reservados. Hecho con &#x1F499 por alumnos de
+                    Ucamp.</p>
+            </div>
+        </footer>
+
 </body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 <script src="/assets/js/main.js"></script>
+
 </html>
