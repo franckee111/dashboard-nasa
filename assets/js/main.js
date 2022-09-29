@@ -5,6 +5,9 @@ const tblNasa = document.getElementById('tblNasa');
 const posicion = 0;
 const graph_velocity = document.getElementById('graph_velocity').getContext('2d');
 const graph_orbiting = document.getElementById('graph_orbiting').getContext('2d');
+const loaderContainer =document.getElementById ("loaderContainer");
+const mainContainer   =document.getElementById("mainContainer");
+const secondContainer =document.getElementById("secondContainer") 
 
 function cargarDatos() {
     fetch(url_api, { method: "GET" })
@@ -125,6 +128,10 @@ function cargarDatos() {
             if (result.length == 0) {
                 tblNasa.innerHTML = `<tr><td colspan="5" class="text-center">No hay datos</td></tr>`;
             }
+
+            loaderContainer.classList.add("d-none");
+            mainContainer.classList.remove("d-none");
+            secondContainer.classList.remove("d-none");
         })
         .catch((error) => console.log(error));
 }
