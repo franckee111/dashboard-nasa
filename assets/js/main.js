@@ -27,7 +27,8 @@ function cargarDatos() {
             let earth = 0;
             let juptr = 0;
             let mars = 0;
-            let otro = 0;
+            let other = 0;
+            const array_orbiting = [];
 
             for(let i=0; i<data_orbiting.length; i++){
                 switch (data_orbiting[i]) {
@@ -37,11 +38,13 @@ function cargarDatos() {
                         break;
                     case 'Mars': mars++;
                         break;
-                    default: otro++;
+                    default: other++;
                 }
             }
-            let array_labels = ['Earth', 'Juptr', 'Mars','Otro'];
-            let array_orbiting = [earth,juptr,mars,otro];
+            //Asteroids orbiting in:
+            let array_labels = ['Earth', 'Juptr', 'Mars','Other'];
+            
+            array_orbiting.push(earth,juptr,mars,other);
 
             const velocity = new Chart(graph_velocity, {
                 type: 'bar',
@@ -83,7 +86,6 @@ function cargarDatos() {
                 data: {
                     labels: array_labels,
                     datasets: [{
-                        label: 'Asteroide Orbitando en',
                         data: array_orbiting,
                         backgroundColor: [
                             'rgba(54, 162, 235, 0.2)',
