@@ -62,69 +62,78 @@ const relativeVelocity = async () => {
     }
 };
 
+const graphBodyOrbiting = async () => {
+    try {
+        const respuesta = await axios.get(url_api);
+
+        //Asteroids orbiting in:
+        let array_labels = ['Earth', 'Juptr', 'Mars', 'Other'];
+
+        let data_orbiting = respuesta.data.near_earth_objects.map((item) => {
+            return item.close_approach_data[position].orbiting_body;
+        });
+
+        let earth = 0;
+        let juptr = 0;
+        let mars = 0;
+        let other = 0;
+        const array_orbiting = [];
+
+        for (let i = 0; i < data_orbiting.length; i++) {
+            switch (data_orbiting[i]) {
+                case 'Earth': earth++;
+                    break;
+                case 'Juptr': juptr++;
+                    break;
+                case 'Mars': mars++;
+                    break;
+                default: other++;
+            }
+        }
+
+        array_orbiting.push(earth, juptr, mars, other);
+
+        const orbiting = new Chart(graph_orbiting, {
+            type: 'doughnut',
+            data: {
+                labels: array_labels,
+                datasets: [{
+                    data: array_orbiting,
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 99, 132, 1)',
+                    ],
+                    borderWidth: 2,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+    catch (error) {
+        console.log(error);
+    }
+};
+
 function cargarDatos() {
     fetch(url_api, { method: "GET" })
         .then((response) => response.json())
         .then((result) => {
             tblNasa.innerHTML = "";
-
-            //Asteroids orbiting in:
-            let array_labels = ['Earth', 'Juptr', 'Mars', 'Other'];
-
-            let data_orbiting = result.near_earth_objects.map((item) => {
-                return item.close_approach_data[position].orbiting_body;
-            });
-
-            let earth = 0;
-            let juptr = 0;
-            let mars = 0;
-            let other = 0;
-            const array_orbiting = [];
-
-            for (let i = 0; i < data_orbiting.length; i++) {
-                switch (data_orbiting[i]) {
-                    case 'Earth': earth++;
-                        break;
-                    case 'Juptr': juptr++;
-                        break;
-                    case 'Mars': mars++;
-                        break;
-                    default: other++;
-                }
-            }
-
-            array_orbiting.push(earth, juptr, mars, other);
-
-            const orbiting = new Chart(graph_orbiting, {
-                type: 'doughnut',
-                data: {
-                    labels: array_labels,
-                    datasets: [{
-                        data: array_orbiting,
-                        backgroundColor: [
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 99, 132, 0.2)',
-                        ],
-                        borderColor: [
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 99, 132, 1)',
-                        ],
-                        borderWidth: 2,
-                        hoverOffset: 4
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
 
             for (const asteroide of result.near_earth_objects) {
                 let tr = `<tr>
@@ -146,8 +155,8 @@ function cargarDatos() {
             mainContainer.classList.remove("d-none");
             secondContainer.classList.remove("d-none");
         })
-        .catch((error) => console.log(error));
 }
-
-relativeVelocity(); //axios sync await
+// axios sync await
+relativeVelocity();
+graphBodyOrbiting();
 cargarDatos(); //fetch promise
