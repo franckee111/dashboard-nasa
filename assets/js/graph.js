@@ -41,7 +41,8 @@ const graphRelativeVelocity = async () => {
                         'rgba(153, 102, 255, 1)',
                         'rgba(255, 159, 64, 1)'
                     ],
-                    borderWidth: 2
+                    borderWidth: 2,
+                
                 }]
             },
             options: {
@@ -63,7 +64,7 @@ const graphBodyOrbiting = async () => {
         const respuesta = await axios.get(url_api);
 
         //Asteroids orbiting in:
-        let array_labels = ['Earth', 'Juptr', 'Mars', 'Other'];
+        let array_labels = ['Earth', 'Juptr', 'Mars'];
 
         let data_orbiting = respuesta.data.near_earth_objects.map((item) => {
             return item.close_approach_data[position].orbiting_body;
