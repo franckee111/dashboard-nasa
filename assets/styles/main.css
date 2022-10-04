@@ -3,14 +3,18 @@
     padding: 0px;
     margin: 0px;
 }
-body{
-    background-color: beige;
 
-}
 h1{
     font-family: 'Abyssinica SIL', serif;
     color: white;
 }
+/* h2{
+    color: white;
+}
+p{
+    color: white;
+} */
+
 thead{
     color:whitesmoke;
 }
